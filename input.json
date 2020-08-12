@@ -1,0 +1,84 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.07",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROASRFZE5EXZN3ANOVEZ:vault-app3.eu1.prod.dog-datadog-delancie-crawler1596239021-2464",
+        "arn": "arn:aws:sts::174334470447:assumed-role/A1XXAROLPDATADOG/vault-app3.eu1.prod.dog-datadog-delancie-crawler1596239021-2464",
+        "accountId": "174334470447",
+        "accessKeyId": "ASIASRFZE5EXZ5CXDLMI",
+        "sessionContext": {
+          "sessionIssuer": {
+            "type": "Role",
+            "principalId": "AROASRFZE5EXZN3ANOVEZ",
+            "arn": "arn:aws:iam::174334470447:role/A1XXAROLPDATADOG",
+            "accountId": "174334470447",
+            "userName": "A1XXAROLPDATADOG"
+          },
+          "attributes": {
+            "creationDate": "2020-07-31T23:43:41Z",
+            "mfaAuthenticated": "false"
+          }
+        }
+      },
+      "eventTime": "2020-07-31T23:52:44Z",
+      "eventSource": "dynamodb.amazonaws.com",
+      "eventName": "ListTables",
+      "awsRegion": "eu-central-1",
+      "sourceIPAddress": "35.198.166.116",
+      "userAgent": "Datadog",
+      "requestParameters": null,
+      "responseElements": null,
+      "requestID": "GJMGI9GOCTCE984CRF1UPQIHHNVV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "eventID": "5da87812-d8ee-49e0-b0bd-e07a4254555d",
+      "readOnly": true,
+      "resources": [],
+      "eventType": "AwsApiCall",
+      "apiVersion": "2012-08-10",
+      "managementEvent": true,
+      "recipientAccountId": "174334470447",
+      "eventCategory": "Management"
+    },
+    {
+      "eventVersion": "1.07",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROASRFZE5EXZN3ANOVEZ:vault-app3.eu1.prod.dog-datadog-delancie-crawler1596239021-2464",
+        "arn": "arn:aws:sts::174334470447:assumed-role/A1XXAROLPDATADOG/vault-app3.eu1.prod.dog-datadog-delancie-crawler1596239021-2464",
+        "accountId": "174334470447",
+        "accessKeyId": "ASIASRFZE5EXZ5CXDLMI",
+        "sessionContext": {
+          "sessionIssuer": {
+            "type": "Role",
+            "principalId": "AROASRFZE5EXZN3ANOVEZ",
+            "arn": "arn:aws:iam::174334470447:role/A1XXAROLPDATADOG",
+            "accountId": "174334470447",
+            "userName": "A1XXAROLPDATADOG"
+          },
+          "attributes": {
+            "creationDate": "2020-07-31T23:43:41Z",
+            "mfaAuthenticated": "false"
+          }
+        }
+      },
+      "eventTime": "2020-07-31T23:55:49Z",
+      "eventSource": "dynamodb.amazonaws.com",
+      "eventName": "ListTables",
+      "awsRegion": "eu-central-1",
+      "sourceIPAddress": "35.198.71.55",
+      "userAgent": "Datadog",
+      "requestParameters": null,
+      "responseElements": null,
+      "requestID": "I1E8BTNN8R5K1IVAVLG750ILSJVV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "eventID": "3ab5b3b5-b730-45f4-8b03-1684eb0b4a8c",
+      "readOnly": true,
+      "resources": [],
+      "eventType": "AwsApiCall",
+      "apiVersion": "2012-08-10",
+      "managementEvent": true,
+      "recipientAccountId": "174334470447",
+      "eventCategory": "Management"
+    }
+  ]
+}
