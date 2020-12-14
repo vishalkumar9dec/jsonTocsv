@@ -4,13 +4,16 @@ def createConnection(func):
 
     def wrapper(*args):
         global conn, curr
-        conn = sqlite3.connect("file.db")
+        conn = sqlite3.connect("data.db")
         curr = conn.cursor()
         input = [ arg for arg in args ]
-        if len(input) == 6:
+        if len(input) == 5:
             func(*args)
         else:
-            func()
+            f = func()
+            conn.commit()
+            conn.close()
+            return f
 
         conn.commit()
         conn.close()
@@ -20,28 +23,27 @@ def createConnection(func):
 
 @createConnection
 def createTable():
-    curr.execute("CREATE TABLE IF NOT EXISTS filedata (id INTEGER,"
-                "username TEXT, eventname TEXT, eventtype TEXT,"
+    curr.execute("CREATE TABLE IF NOT EXISTS inputdata (username TEXT, "
+                 "eventname TEXT, eventtype TEXT,"
                 "eventsource TEXT, eventtime TEXT)")
 
 @createConnection
 def truncateTable():
-    curr.execute("DELETE FROM filedata")
+    curr.execute("DELETE FROM inputdata")
 
 @createConnection
-def insertData(id,uname,ename,etype,esource,etime):
-     curr.execute("INSERT INTO filedata VALUES(?,?,?,?,?,?)",(id,uname,ename, etype,esource,etime))
+def insertData(uname,ename,etype,esource,etime):
+     curr.execute("INSERT INTO inputdata VALUES(?,?,?,?,?)",(uname,ename, etype,esource,etime))
 
 
 @createConnection
 def queryData():
-    data = curr.execute("SELECT * FROM filedata").fetchall()
-    for d in data:
-        print(d)
+    data = curr.execute("SELECT * FROM inputdata").fetchall()
+    return data
 
-createTable()
-truncateTable()
-insertData(1,"VK","fncall","autodata","program","12Aug")
-insertData(2,"Happy","callingFunc","autodata","Pyprogram","12Aug")
-queryData()
-
+# createTable()
+# truncateTable()
+# insertData(1,"VK","fncall","autodata","program","12Aug")
+# insertData(2,"Happy","callingFunc","autodata","Pyprogram","12Aug")
+# d = queryData()
+# print(d)

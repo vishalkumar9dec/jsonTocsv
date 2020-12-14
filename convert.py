@@ -1,24 +1,26 @@
 """
-A program that stores the book information:
-Title, Author, Year, ISBN
+A program that converts a json file to specific CSV format:
 
-User can:
+Features:
+1. Importing the file
+2. Listing basic info about the file, like filename, filesize
+3. Writing the data into SQLite3 DB for future use such as data analysis and other operations
+4. Data Parsing
+5. Writing the data in CSV format
 
-View all records
-Search an entry
-Add entry
-Update Entry
-Close
+Author: Vishal Kumar
+
 """
 
 from tkinter import *
 from tkinter import filedialog
 import json
 import ntpath
+import convertFile.dbOperations as DB
 
 
 '''Function definitions'''
-
+DB.createTable()
 
 def UploadAction(event=None):
     global filename
@@ -45,34 +47,39 @@ def convertfile():
 
         output_file = filename.split(".")[0]+"_converted.csv"
 
-        with open(output_file, 'a') as file:
+        for i in range(len(data['Records'])):
+            try:
+                uname = data['Records'][i]['userIdentity']['sessionContext']['sessionIssuer']['userName']
+            except:
+                uname = ""
+            try:
+                eventname = data['Records'][i]['eventName']
+            except:
+                eventname = ""
+            try:
+                eventtime = data['Records'][i]['eventTime']
+            except:
+                eventtime = ""
+            try:
+                eventsource = data['Records'][i]['eventSource']
+            except:
+                eventsource = ""
+            try:
+                eventtype = data['Records'][i]['eventType']
+            except:
+                eventtype = ""
+
+            DB.truncateTable()
+            DB.insertData(uname,eventname,eventtype,eventsource,eventtime)
+            data_db = DB.queryData()
+
+        with open(output_file,'a') as file:
             file.write('Username,EventName,EventTime,EventSource,EventType\n')
-            for i in range(len(data['Records'])):
-                try:
-                    uname = data['Records'][i]['userIdentity']['sessionContext']['sessionIssuer']['userName']
-                except:
-                    uname = ""
-                try:
-                    eventname = data['Records'][i]['eventName']
-                except:
-                    eventname = ""
-                try:
-                    eventtime = data['Records'][i]['eventTime']
-                except:
-                    eventtime = ""
-                try:
-                    eventsource = data['Records'][i]['eventSource']
-                except:
-                    eventsource = ""
-                try:
-                    eventtype = data['Records'][i]['eventType']
-                except:
-                    eventtype = ""
+            for row in data_db:
+               file.write(row[0] + ',' + row[1] + ',' + row[2] + ',' + row[3] + ',' + row[4] + '\n')
 
-                file.write(uname + ',' + eventname + ',' + eventtime + ',' + eventsource + ',' + eventtype + '\n')
-
-        if ntpath.basename(output_file):
-            c1.insert(END,"Json file converted to CSV successfully !")
+        if ntpath.lexists(output_file):
+            c1.insert(END,"Json file converted to CSV successfully and import to DB !")
         else:
             c1.insert(END,"Oops! Some Error Occurred")
 

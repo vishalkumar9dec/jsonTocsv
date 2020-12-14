@@ -1,0 +1,2 @@
+Username,EventName,EventTime,EventSource,EventType
+A1XXAROLPDATADOG,ListTables,AwsApiCall,dynamodb.amazonaws.com,2020-07-31T23:55:49Z
