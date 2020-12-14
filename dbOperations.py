@@ -10,10 +10,10 @@ def createConnection(func):
         if len(input) == 5:
             func(*args)
         else:
-            f = func()
+            fn = func()
             conn.commit()
             conn.close()
-            return f
+            return fn
 
         conn.commit()
         conn.close()

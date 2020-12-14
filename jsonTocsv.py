@@ -52,6 +52,8 @@ def convertToCSV():
                         print("Json file converted to CSV successfully and import to DB !")
                 except:
                     print("Oops! Some Error Occurred")
+                    print("This will be logged into a logfile.")
 
     except IOError:
         print("File not available for processing")
+        print("Please check the source directory")
